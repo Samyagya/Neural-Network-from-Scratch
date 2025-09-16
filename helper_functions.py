@@ -25,13 +25,13 @@ def accuracy(X, Y, W1, B1, W2, B2, W3, B3):
     Z1 = X.dot(W1) + B1
     X2 = ReLU(Z1)
     Z2 = X2.dot(W2) + B2
-    X3 = ReLU(Z2)
+    X3 = ReLU(Z2) 
     Z3 = X3.dot(W3) + B3
     X4 = softMax(Z3)
     preds = np.argmax(X4, axis=1)
     return np.mean(preds == Y)
 
-def forward_pass(X, W1, B1, W2, B2, W3, B3):
+def ANN_forward_pass(X, W1, B1, W2, B2, W3, B3):
     Z1 = X.dot(W1) + B1
     X2 = ReLU(Z1)
 
@@ -43,7 +43,7 @@ def forward_pass(X, W1, B1, W2, B2, W3, B3):
 
     return Z1, X2, Z2, X3, Z3, X4, X4
 
-def backward_pass(X, Y, Z1, X2, Z2, X3, Z3, X4, W2, W3, m):
+def ANN_backward_pass(X, Y, Z1, X2, Z2, X3, Z3, X4, W2, W3, m):
     # Output layer
     dZ3 = X4 - Y  # (m,10)
     dW3 = (1/m) * (X3.T.dot(dZ3))  # (64,10)
@@ -66,7 +66,7 @@ def backward_pass(X, Y, Z1, X2, Z2, X3, Z3, X4, W2, W3, m):
     return dW1, dB1, dW2, dB2, dW3, dB3
 
 
-def update_parameters(W1, B1, W2, B2, W3, B3, dW1, dB1, dW2, dB2, dW3, dB3, alpha):
+def ANN_update_parameters(W1, B1, W2, B2, W3, B3, dW1, dB1, dW2, dB2, dW3, dB3, alpha):
     W1 -= alpha*dW1
     B1 -= alpha*dB1
     W2 -= alpha*dW2

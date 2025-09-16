@@ -22,16 +22,16 @@ B3 = np.zeros((1,10))
 
 for i in range(epochs):
     #Forward
-    Z1, X2, Z2, X3, Z3, X4, _ = helper_functions.forward_pass(X1, W1, B1, W2, B2, W3, B3)
+    Z1, X2, Z2, X3, Z3, X4, _ = helper_functions.ANN_forward_pass(X1, W1, B1, W2, B2, W3, B3)
 
     #Loss
     loss = helper_functions.lossCalculation(OnehotY, X4)
 
     #Backward
-    dW1, dB1, dW2, dB2, dW3, dB3 = helper_functions.backward_pass(X1, OnehotY, Z1, X2, Z2, X3, Z3, X4, W2, W3, m)
+    dW1, dB1, dW2, dB2, dW3, dB3 = helper_functions.ANN_backward_pass(X1, OnehotY, Z1, X2, Z2, X3, Z3, X4, W2, W3, m)
 
     #Update
-    W1, B1, W2, B2, W3, B3 = helper_functions.update_parameters(W1, B1, W2, B2, W3, B3, dW1, dB1, dW2, dB2, dW3, dB3, alpha)
+    W1, B1, W2, B2, W3, B3 = helper_functions.ANN_update_parameters(W1, B1, W2, B2, W3, B3, dW1, dB1, dW2, dB2, dW3, dB3, alpha)
 
     if i % 10 == 0:
         train_acc = helper_functions.accuracy(X1, Y, W1, B1, W2, B2, W3, B3)
